@@ -28,8 +28,8 @@ class LmeModuleColleges {
 		if (empty($colleges))
 			return;
 
-		$state = htmlentities($colleges[0]["college"]["state"]);
-		$findMoreUrl = "http://www.matchcollege.com/state-college/" . strtoupper($state);
+		$state = htmlentities($colleges[0]["college"]["state_name"]);
+		$findMoreUrl = "http://www.matchcollege.com/state/" . str_replace(" ","-",strtolower($state));
 		
 		if (!empty($opt_zip)) {
 			$areaName = htmlspecialchars($zip);
@@ -54,7 +54,7 @@ class LmeModuleColleges {
 						</div>
 						<div>
 							<input type="radio" name="lme-college-filter" id="lme-public-level-lt2" data-filter="public-less-than-2-year" />
-							<label for="lme-public-level-lt2">Less than 2-year</label>
+							<label for="lme-public-level-lt2">Career Colleges</label>
 						</div>
 					</div>
 					
@@ -70,11 +70,11 @@ class LmeModuleColleges {
 						</div>
 						<div>
 							<input type="radio" name="lme-college-filter" id="lme-private-level-lt2" data-filter="private-less-than-2-year" />
-							<label for="lme-private-level-lt2">Less than 2-year</label>
+							<label for="lme-private-level-lt2">Career Colleges</label>
 						</div>
 					</div>
 					
-					<a href="http://www.matchcollege.com" target="_blank">
+					<a href="http://www.matchcollege.com" target="_blank" rel="nofollow">
 						<img class="lme-matchcollege-logo" src="{$logoUrl}" />
 					</a>
 				</div>
@@ -102,7 +102,7 @@ HTML;
 			$content .= <<<HTML
 
 						<div class="lme-college {$filterClass}">
-							<h4><a href="{$url}">{$name}</a></h4>
+							<h4><a href="{$url}" rel="nofollow">{$name}</a></h4>
 							<div>{$address}, {$city}, {$state}</div>
 							<div>{$phone}</div>
 							<div>College Type: {$collegeType}</div>
@@ -118,7 +118,7 @@ HTML;
 				</div>
 				<div style="clear: both;"></div> <!-- IE 6 fix -->
 				<div class="lme-colleges-find-more">
-					Find more <a href="{$findMoreUrl}" target="_blank">colleges in {$state}</a>
+					Find More <a rel="nofollow" href="{$findMoreUrl}" target="_blank">Colleges in {$state}</a>
 				</div>
 				<div style="clear: both;"></div> <!-- IE 6 fix -->
 			</div>
